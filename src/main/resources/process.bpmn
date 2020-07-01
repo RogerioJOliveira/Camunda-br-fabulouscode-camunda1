@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_0fr9mxs" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.0.0">
+  <bpmn:process id="br-fabulouscode-camunda1-process" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_0d9yz7g</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:endEvent id="EndEvent_0x6ir2l">
+      <bpmn:incoming>SequenceFlow_16gzt2m</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_16gzt2m" sourceRef="say-hello" targetRef="EndEvent_0x6ir2l" />
+    <bpmn:sequenceFlow id="Flow_0d9yz7g" sourceRef="StartEvent_1" targetRef="HelloCamunda" />
+    <bpmn:userTask id="say-hello" name="Say hello to&#10;demo" camunda:asyncBefore="true">
+      <bpmn:incoming>Flow_0c4i1vs</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_16gzt2m</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1j1yc76</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_0c4i1vs" sourceRef="HelloCamunda" targetRef="say-hello" />
+    <bpmn:sequenceFlow id="Flow_1j1yc76" sourceRef="say-hello" targetRef="HelloCamunda" />
+    <bpmn:serviceTask id="HelloCamunda" name="Hello Camunda" camunda:delegateExpression="${HelloDelegate}">
+      <bpmn:incoming>Flow_0d9yz7g</bpmn:incoming>
+      <bpmn:incoming>Flow_1j1yc76</bpmn:incoming>
+      <bpmn:outgoing>Flow_0c4i1vs</bpmn:outgoing>
+    </bpmn:serviceTask>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="br-fabulouscode-camunda1-process">
+      <bpmndi:BPMNEdge id="SequenceFlow_16gzt2m_di" bpmnElement="SequenceFlow_16gzt2m">
+        <di:waypoint x="570" y="117" />
+        <di:waypoint x="652" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0d9yz7g_di" bpmnElement="Flow_0d9yz7g">
+        <di:waypoint x="215" y="117" />
+        <di:waypoint x="270" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0c4i1vs_di" bpmnElement="Flow_0c4i1vs">
+        <di:waypoint x="370" y="117" />
+        <di:waypoint x="470" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1j1yc76_di" bpmnElement="Flow_1j1yc76">
+        <di:waypoint x="470" y="117" />
+        <di:waypoint x="370" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="99" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_0x6ir2l_di" bpmnElement="EndEvent_0x6ir2l">
+        <dc:Bounds x="652" y="99" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_09r6i77_di" bpmnElement="say-hello">
+        <dc:Bounds x="470" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0xl8s47_di" bpmnElement="HelloCamunda">
+        <dc:Bounds x="270" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
